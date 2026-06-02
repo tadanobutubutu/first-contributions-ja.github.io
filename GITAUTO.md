@@ -1,2 +1,2 @@
 ## Code Style
-- Keep `noUnusedLocals` and `noUnusedParameters` enabled in `tsconfig.test.json` to prevent dead code in tests.
+- Keep `noUnusedLocals` and `noUnusedParameters` enabled in `tsconfig.json` to prevent dead code.
