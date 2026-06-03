@@ -1,0 +1,123 @@
+# managed-by: jaipilot-github-app
+name: JAIPilot Generate
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  workflow_dispatch:
+
+
+concurrency:
+  group: jaipilot-generate-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  generate-tests:
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    if: ${{ github.actor != 'github-actions[bot]' && (github.event_name == 'workflow_dispatch' || (github.event.pull_request && github.event.pull_request.head.repo.full_name == github.repository)) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+          fetch-depth: 0
+
+      - name: Exchange GitHub OIDC token for JAIPilot runtime token
+        id: jaipilot-auth
+        shell: bash
+        env:
+          JAIPILOT_TOKEN_ENDPOINT: ${{ secrets.JAIPILOT_TOKEN_ENDPOINT }} # compliance-shield-ignore
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }} # compliance-shield-ignore
+        run: |
+          set -euo pipefail
+          trap 'echo "Error in line $LINENO" >&2' ERR
+
+          for var in JAIPILOT_TOKEN_ENDPOINT JAIPILOT_BACKEND_URL GITHUB_TOKEN; do
+            if [ -z "${!var}" ]; then
+              echo "$var credential is not configured." >&2
+              exit 1
+            fi
+          done
+
+
+
+          if ! command -v jq >/dev/null 2>&1; then
+            echo "jq is required but missing on the runner." >&2
+            exit 1
+          fi
+
+          if [ -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" ]; then
+            echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN is not set. Ensure 'id-token: write' permission is granted." >&2
+            exit 1
+          fi
+          if [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL}" ]; then
+            echo "ACTIONS_ID_TOKEN_REQUEST_URL is not set. Ensure 'id-token: write' permission is granted." >&2
+            exit 1
+          fi
+          echo "Obtaining GitHub OIDC token..."
+          oidc_response="$(curl -fsSL --connect-timeout 10 --max-time 30 \
+            -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=jaipilot-github-app")" || { echo "Failed to fetch OIDC token (curl error)." >&2; exit 1; }
+          github_oidc_token="$(echo "$oidc_response" | jq -r '.value')"
+
+          if [ -z "$github_oidc_token" ] || [ "$github_oidc_token" = "null" ]; then
+            echo "Failed to obtain GitHub OIDC token: $oidc_response" >&2
+            exit 1
+          fi
+          echo "GitHub OIDC token obtained successfully."
+
+          for var in GITHUB_REPOSITORY GITHUB_REPOSITORY_ID GITHUB_REPOSITORY_OWNER GITHUB_RUN_ID GITHUB_RUN_ATTEMPT GITHUB_ACTOR; do
+            if [ -z "${!var}" ]; then
+              echo "Required environment variable $var is missing." >&2
+              exit 1
+            fi
+          done
+          echo "Preparing token exchange payload..."
+          exchange_payload="$(jq -cn \
+            --arg repository "${GITHUB_REPOSITORY}" \
+            --arg repository_id "${GITHUB_REPOSITORY_ID}" \
+            --arg repository_owner "${GITHUB_REPOSITORY_OWNER}" \
+            --arg run_id "${GITHUB_RUN_ID}" \
+            --arg run_attempt "${GITHUB_RUN_ATTEMPT}" \
+            --arg actor "${GITHUB_ACTOR}" \
+            '{repository: $repository, repository_id: $repository_id, repository_owner: $repository_owner, run_id: $run_id, run_attempt: $run_attempt, actor: $actor}')"
+
+          echo "Exchanging OIDC token for JAIPilot runtime token..."
+          token_response="$(curl -fsSL --connect-timeout 10 --max-time 30 -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
+            -H "Authorization: Bearer ${github_oidc_token}" \
+            -H "Content-Type: application/json" \
+            -d "$exchange_payload")" || { echo "Token exchange request failed (curl error)." >&2; exit 1; }
+
+          jaipilot_token="$(echo "$token_response" | jq -r '.jaipilot_token')"
+
+          if [ -z "$jaipilot_token" ] || [ "$jaipilot_token" = "null" ]; then
+            echo "Token exchange failed." >&2
+            exit 1
+          fi
+          echo "JAIPilot runtime token obtained successfully."
+
+          echo "::add-mask::$jaipilot_token"
+          echo "jaipilot_token=$jaipilot_token" >> "$GITHUB_OUTPUT"
+      - name: Run JAIPilot generate and push changes
+        uses: JAIPilot/jaipilot-cli@530d9e06e603b73269e5287bd1e9f22b1ae45805 # v1
+        env:
+          JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          jaipilot-auth-token: ${{ steps.jaipilot-auth.outputs.jaipilot_token }}
+
+      - name: Report Success
+        if: success()
+        run: echo "::notice::JAIPilot test generation completed successfully."
+
+      - name: Report Failure
+        if: failure()
+        run: echo "::error::JAIPilot test generation failed."
