@@ -3,6 +3,7 @@
 
 ## GitHub Actions
 - Use `persist-credentials: false` in `actions/checkout` to reduce credential exposure risk.
+- Validate required secrets in shell scripts to ensure workflows fail with clear error messages if configuration is missing.
 
 ## JAIPilot Workflow
 - **Purpose**: Automates test generation for pull requests.
