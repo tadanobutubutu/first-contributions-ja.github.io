@@ -94,5 +94,14 @@ jobs:
         uses: JAIPilot/jaipilot-cli@530d9e06e603b73269e5287bd1e9f22b1ae45805 # v1
         env:
           JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }} # compliance-shield-ignore
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           jaipilot-auth-token: ${{ steps.jaipilot-auth.outputs.jaipilot_token }}
+
+      - name: Report Success
+        if: success()
+        run: echo "::notice::JAIPilot test generation completed successfully."
+
+      - name: Report Failure
+        if: failure()
+        run: echo "::error::JAIPilot test generation failed."
