@@ -67,10 +67,6 @@ jobs:
             exit 1
           fi
 
-          if [ "$JAIPILOT_TOKEN_ENDPOINT" != "https://otxfylhjrlaesjagfhfi.supabase.co/functions/v1/github-actions-token" ]; then
-            echo "JAIPILOT_TOKEN_ENDPOINT does not match the trusted JAIPilot endpoint." >&2
-            exit 1
-          fi
 
           if [ -z "$JAIPILOT_BACKEND_URL" ]; then
             echo "JAIPILOT_BACKEND_URL credential is not configured." >&2
