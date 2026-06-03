@@ -111,7 +111,7 @@ jobs:
       - name: Run JAIPilot generate and push changes
         uses: JAIPilot/jaipilot-cli@530d9e06e603b73269e5287bd1e9f22b1ae45805 # v1
         env:
-          JAIPILOT_BACKEND_URL: ${{ steps.jaipilot-auth.outputs.JAIPILOT_BACKEND_URL }}
+          JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           jaipilot-auth-token: ${{ steps.jaipilot-auth.outputs.jaipilot_token }}
