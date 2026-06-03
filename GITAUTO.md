@@ -6,6 +6,7 @@
 - Use `persist-credentials: false` in `actions/checkout` to reduce credential exposure risk, unless the workflow needs to push changes back to the repository.
 - Avoid hardcoding values in workflow files that are already provided via secure credentials to prevent brittleness.
 - Validate required credentials in shell scripts to ensure workflows fail with clear error messages if configuration is missing.
+- Avoid logging sensitive metadata or payloads in CI logs to prevent credential exposure.
 
 ## JAIPilot Workflow
 - **Purpose**: Automates test generation for pull requests.
