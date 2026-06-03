@@ -3,6 +3,7 @@
 
 ## GitHub Actions
 - Pin GitHub Actions to full-length immutable commit SHAs instead of mutable tags to ensure workflow stability and security. Append a version comment (e.g., `# v4`) for reviewer legibility.
+- Periodically review and update pinned commit SHAs for actions to pick up critical security patches and fixes.
 - Use `persist-credentials: false` in `actions/checkout` to reduce credential exposure risk, unless subsequent steps rely on the git config for authentication (e.g., running `git push` directly in a shell script).
 - Avoid hardcoding values in workflow files that are already provided via secure credentials to prevent brittleness.
 - Validate required credentials in shell scripts to ensure workflows fail with clear error messages if configuration is missing.
