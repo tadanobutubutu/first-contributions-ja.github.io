@@ -1,0 +1,23 @@
+name: 'Checkout'
+description: 'Checkout repository with pinned version and persist-credentials: false'
+inputs:
+  ref:
+    description: 'The git ref to checkout'
+    required: false
+  fetch-depth:
+    description: 'Number of commits to fetch'
+    required: false
+    default: '1'
+  persist-credentials:
+    description: 'Whether to persist credentials'
+    required: false
+    default: 'false'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      with:
+        ref: ${{ inputs.ref }}
+        fetch-depth: ${{ inputs.fetch-depth }}
+        persist-credentials: ${{ inputs.persist-credentials }}
