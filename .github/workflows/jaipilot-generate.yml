@@ -43,6 +43,7 @@ jobs:
             exit 1
           fi
 
+          echo "Obtaining GitHub OIDC token..."
           oidc_response="$(curl -fsSL --connect-timeout 10 --max-time 30 \
             -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
             "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=jaipilot-github-app")"
@@ -52,6 +53,7 @@ jobs:
             echo "Failed to obtain GitHub OIDC token." >&2
             exit 1
           fi
+          echo "GitHub OIDC token obtained successfully."
 
           exchange_payload="$(jq -cn \
             --arg repository "${GITHUB_REPOSITORY}" \
