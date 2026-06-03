@@ -97,7 +97,6 @@ jobs:
             -d "$exchange_payload")"
 
           jaipilot_token="$(echo "$token_response" | jq -r '.jaipilot_token')"
-          expires_at="$(echo "$token_response" | jq -r '.expires_at')"
 
           if [ -z "$jaipilot_token" ] || [ "$jaipilot_token" = "null" ]; then
             echo "Token exchange failed." >&2
