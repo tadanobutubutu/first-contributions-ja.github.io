@@ -8,10 +8,6 @@ on:
       - synchronize
       - reopened
 
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
 
 concurrency:
   group: jaipilot-generate-${{ github.event.pull_request.number }}
@@ -19,6 +15,10 @@ concurrency:
 
 jobs:
   generate-tests:
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
     if: ${{ github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
