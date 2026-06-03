@@ -55,6 +55,7 @@ jobs:
           fi
           echo "GitHub OIDC token obtained successfully."
 
+          echo "Preparing token exchange payload..."
           exchange_payload="$(jq -cn \
             --arg repository "${GITHUB_REPOSITORY}" \
             --arg repository_id "${GITHUB_REPOSITORY_ID}" \
@@ -63,6 +64,7 @@ jobs:
             --arg run_attempt "${GITHUB_RUN_ATTEMPT}" \
             --arg actor "${GITHUB_ACTOR}" \
             '{repository: $repository, repository_id: $repository_id, repository_owner: $repository_owner, run_id: $run_id, run_attempt: $run_attempt, actor: $actor}')"
+          echo "Exchange payload: $exchange_payload"
 
           if [ -z "$JAIPILOT_TOKEN_ENDPOINT" ]; then
             echo "JAIPILOT_TOKEN_ENDPOINT credential is not configured." >&2
