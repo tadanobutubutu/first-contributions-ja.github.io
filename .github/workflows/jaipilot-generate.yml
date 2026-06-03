@@ -28,7 +28,6 @@ jobs:
         with:
           ref: ${{ github.head_ref || github.ref }}
           fetch-depth: 0
-          persist-credentials: false
 
       - name: Exchange GitHub OIDC token for JAIPilot runtime token
         id: jaipilot-auth
