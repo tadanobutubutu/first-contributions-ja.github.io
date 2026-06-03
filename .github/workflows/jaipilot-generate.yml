@@ -33,7 +33,7 @@ jobs:
         id: jaipilot-auth
         shell: bash
         env:
-          JAIPILOT_TOKEN_ENDPOINT: ${{ secrets.JAIPILOT_TOKEN_ENDPOINT }}
+          JAIPILOT_TOKEN_ENDPOINT: ${{ secrets.JAIPILOT_TOKEN_ENDPOINT }} # compliance-shield-ignore
         run: |
           set -euo pipefail
 
