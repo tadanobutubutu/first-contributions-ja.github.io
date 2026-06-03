@@ -62,6 +62,11 @@ jobs:
             --arg actor "${GITHUB_ACTOR}" \
             '{repository: $repository, repository_id: $repository_id, repository_owner: $repository_owner, run_id: $run_id, run_attempt: $run_attempt, actor: $actor}')"
 
+          if [ -z "$JAIPILOT_TOKEN_ENDPOINT" ]; then
+            echo "JAIPILOT_TOKEN_ENDPOINT secret is not configured." >&2
+            exit 1
+          fi
+
           token_response="$(curl -fsSL -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
             -H "Authorization: Bearer ${github_oidc_token}" \
             -H "Content-Type: application/json" \
