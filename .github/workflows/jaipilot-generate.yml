@@ -67,6 +67,11 @@ jobs:
             exit 1
           fi
 
+          if [ -z "$JAIPILOT_BACKEND_URL" ]; then
+            echo "JAIPILOT_BACKEND_URL credential is not configured." >&2
+            exit 1
+          fi
+
           token_response="$(curl -fsSL --connect-timeout 10 --max-time 30 -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
             -H "Authorization: Bearer ${github_oidc_token}" \
             -H "Content-Type: application/json" \
