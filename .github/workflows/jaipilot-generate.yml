@@ -94,7 +94,7 @@ jobs:
           token_response="$(curl -fsSL --connect-timeout 10 --max-time 30 -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
             -H "Authorization: Bearer ${github_oidc_token}" \
             -H "Content-Type: application/json" \
-            -d "$exchange_payload")"
+            -d "$exchange_payload")" || { echo "Token exchange request failed (curl error)." >&2; exit 1; }
 
           jaipilot_token="$(echo "$token_response" | jq -r '.jaipilot_token')"
 
