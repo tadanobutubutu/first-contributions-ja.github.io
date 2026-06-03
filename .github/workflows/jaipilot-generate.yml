@@ -37,6 +37,16 @@ jobs:
           JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }} # compliance-shield-ignore
         run: |
           set -euo pipefail
+          if [ -z "$JAIPILOT_TOKEN_ENDPOINT" ]; then
+            echo "JAIPILOT_TOKEN_ENDPOINT credential is not configured." >&2
+            exit 1
+          fi
+
+          if [ -z "$JAIPILOT_BACKEND_URL" ]; then
+            echo "JAIPILOT_BACKEND_URL credential is not configured." >&2
+            exit 1
+          fi
+
 
           if ! command -v jq >/dev/null 2>&1; then
             echo "jq is required but missing on the runner." >&2
@@ -64,18 +74,6 @@ jobs:
             --arg run_attempt "${GITHUB_RUN_ATTEMPT}" \
             --arg actor "${GITHUB_ACTOR}" \
             '{repository: $repository, repository_id: $repository_id, repository_owner: $repository_owner, run_id: $run_id, run_attempt: $run_attempt, actor: $actor}')"
-          echo "Exchange payload: $exchange_payload"
-
-          if [ -z "$JAIPILOT_TOKEN_ENDPOINT" ]; then
-            echo "JAIPILOT_TOKEN_ENDPOINT credential is not configured." >&2
-            exit 1
-          fi
-
-
-          if [ -z "$JAIPILOT_BACKEND_URL" ]; then
-            echo "JAIPILOT_BACKEND_URL credential is not configured." >&2
-            exit 1
-          fi
 
           echo "Exchanging OIDC token for JAIPilot runtime token..."
           token_response="$(curl -fsSL --connect-timeout 10 --max-time 30 -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
