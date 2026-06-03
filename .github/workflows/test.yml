@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    needs: lint-workflows
     runs-on: ubuntu-latest
 
     steps:
