@@ -3,3 +3,14 @@
 
 ## GitHub Actions
 - Use `persist-credentials: false` in `actions/checkout` to reduce credential exposure risk.
+
+## JAIPilot Workflow
+- **Purpose**: Automates test generation for pull requests.
+- **Triggers**: Triggered when a pull request is `opened`, `synchronize`, or `reopened`.
+- **Configuration**:
+    - `JAIPILOT_TOKEN_ENDPOINT`: Secret containing the URL for exchanging GitHub OIDC tokens for JAIPilot runtime tokens.
+    - `JAIPILOT_BACKEND_URL`: Secret containing the JAIPilot backend API URL.
+- **Troubleshooting**:
+    - Check the "JAIPilot Generate" action logs in the GitHub Actions tab.
+    - Ensure the required secrets are configured in the repository settings.
+    - Verify that the PR is coming from the same repository (forks are excluded by default).
