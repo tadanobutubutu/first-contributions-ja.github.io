@@ -39,19 +39,14 @@ jobs:
           JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }} # compliance-shield-ignore
         run: |
           set -euo pipefail
-          if [ -z "$JAIPILOT_TOKEN_ENDPOINT" ]; then
-            echo "JAIPILOT_TOKEN_ENDPOINT credential is not configured." >&2
-            exit 1
-          fi
+          trap 'echo "Error in line $LINENO" >&2' ERR
 
-          if [ -z "$JAIPILOT_BACKEND_URL" ]; then
-            echo "JAIPILOT_BACKEND_URL credential is not configured." >&2
-            exit 1
-
-          if [ -z "$GITHUB_TOKEN" ]; then
-            echo "GITHUB_TOKEN credential is not configured." >&2
-            exit 1
-          fi
+          for var in JAIPILOT_TOKEN_ENDPOINT JAIPILOT_BACKEND_URL GITHUB_TOKEN; do
+            if [ -z "${!var}" ]; then
+              echo "$var credential is not configured." >&2
+              exit 1
+            fi
+          done
 
 
 
