@@ -83,6 +83,6 @@ jobs:
       - name: Run JAIPilot generate and push changes
         uses: JAIPilot/jaipilot-cli@action-v1
         env:
-          JAIPILOT_BACKEND_URL: https://otxfylhjrlaesjagfhfi.supabase.co
+          JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }}
         with:
           jaipilot-auth-token: ${{ steps.jaipilot-auth.outputs.jaipilot_token }}
