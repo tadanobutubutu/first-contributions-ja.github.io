@@ -2,6 +2,7 @@
 - Keep `noUnusedLocals` and `noUnusedParameters` enabled in `tsconfig.json` to prevent dead code.
 
 ## GitHub Actions
+- Pin GitHub Actions to full-length immutable commit SHAs instead of mutable tags to ensure workflow stability and security.
 - Use `persist-credentials: false` in `actions/checkout` to reduce credential exposure risk.
 - Validate required credentials in shell scripts to ensure workflows fail with clear error messages if configuration is missing.
 
