@@ -52,7 +52,7 @@ jobs:
             echo "GITHUB_TOKEN credential is not configured." >&2
             exit 1
           fi
-          fi
+
 
 
           if ! command -v jq >/dev/null 2>&1; then
