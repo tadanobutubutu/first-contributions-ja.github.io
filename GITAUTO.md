@@ -13,5 +13,5 @@
     - `JAIPILOT_BACKEND_URL`: Credential containing the JAIPilot backend API URL.
 - **Troubleshooting**:
     - Check the "JAIPilot Generate" action logs in the GitHub Actions tab.
-    - Ensure the required secrets are configured in the repository settings.
+    - Ensure the required credentials are configured in the repository settings.
     - Verify that the PR is coming from the same repository (forks are excluded by default).
