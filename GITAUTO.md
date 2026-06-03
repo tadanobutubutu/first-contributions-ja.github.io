@@ -3,7 +3,7 @@
 
 ## GitHub Actions
 - Pin GitHub Actions to full-length immutable commit SHAs instead of mutable tags to ensure workflow stability and security. Append a version comment (e.g., `# v4`) for reviewer legibility.
-- Extract common workflow steps (e.g., checkout, setup-node) into reusable composite actions to reduce duplication and centralize version pinning.
+- Extract common workflow steps (e.g., setup-node) into reusable composite actions to reduce duplication and centralize version pinning. Note: Local composite actions cannot be used for the initial repository checkout.
 - Periodically review and update pinned commit SHAs for actions to pick up critical security patches and fixes.
 - Use `persist-credentials: false` in `actions/checkout` to reduce credential exposure risk, unless subsequent steps rely on the git config for authentication (e.g., running `git push` directly in a shell script).
 - Avoid hardcoding values in workflow files that are already provided via secure credentials to prevent brittleness.
