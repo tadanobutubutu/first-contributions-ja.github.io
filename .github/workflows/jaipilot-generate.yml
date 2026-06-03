@@ -117,8 +117,16 @@ jobs:
 
       - name: Report Success
         if: success()
-        run: echo "::notice::JAIPilot test generation completed successfully."
+        run: |
+          echo "::notice::JAIPilot test generation completed successfully."
+          echo "### ✅ JAIPilot Test Generation Success" >> $GITHUB_STEP_SUMMARY
+          echo "JAIPilot has successfully analyzed the PR and pushed generated tests to the branch." >> $GITHUB_STEP_SUMMARY
+
 
       - name: Report Failure
         if: failure()
-        run: echo "::error::JAIPilot test generation failed."
+        run: |
+          echo "::error::JAIPilot test generation failed."
+          echo "### ❌ JAIPilot Test Generation Failure" >> $GITHUB_STEP_SUMMARY
+          echo "JAIPilot encountered an error during test generation. Please check the workflow logs for details." >> $GITHUB_STEP_SUMMARY
+
