@@ -67,7 +67,7 @@ jobs:
             exit 1
           fi
 
-          token_response="$(curl -fsSL -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
+          token_response="$(curl -fsSL --connect-timeout 10 --max-time 30 -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
             -H "Authorization: Bearer ${github_oidc_token}" \
             -H "Content-Type: application/json" \
             -d "$exchange_payload")"
