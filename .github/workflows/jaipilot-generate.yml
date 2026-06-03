@@ -49,7 +49,6 @@ jobs:
 
           if [ -z "$github_oidc_token" ] || [ "$github_oidc_token" = "null" ]; then
             echo "Failed to obtain GitHub OIDC token." >&2
-            echo "Response: $oidc_response" >&2
             exit 1
           fi
 
