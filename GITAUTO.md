@@ -10,7 +10,7 @@
 - **Triggers**: Triggered when a pull request is `opened`, `synchronize`, or `reopened`.
 - **Configuration**:
     - `JAIPILOT_TOKEN_ENDPOINT`: Credential containing the URL for exchanging GitHub OIDC tokens for JAIPilot runtime tokens.
-    - `JAIPILOT_BACKEND_URL`: Secret containing the JAIPilot backend API URL.
+    - `JAIPILOT_BACKEND_URL`: Credential containing the JAIPilot backend API URL.
 - **Troubleshooting**:
     - Check the "JAIPilot Generate" action logs in the GitHub Actions tab.
     - Ensure the required secrets are configured in the repository settings.
