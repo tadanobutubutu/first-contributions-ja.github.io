@@ -76,7 +76,6 @@ jobs:
 
           if [ -z "$jaipilot_token" ] || [ "$jaipilot_token" = "null" ]; then
             echo "Token exchange failed." >&2
-            echo "Response: $token_response" >&2
             exit 1
           fi
 
