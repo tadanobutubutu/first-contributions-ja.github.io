@@ -77,6 +77,7 @@ jobs:
             exit 1
           fi
 
+          echo "Exchanging OIDC token for JAIPilot runtime token..."
           token_response="$(curl -fsSL --connect-timeout 10 --max-time 30 -X POST "$JAIPILOT_TOKEN_ENDPOINT" \
             -H "Authorization: Bearer ${github_oidc_token}" \
             -H "Content-Type: application/json" \
@@ -89,6 +90,7 @@ jobs:
             echo "Token exchange failed." >&2
             exit 1
           fi
+          echo "JAIPilot runtime token obtained successfully."
 
           echo "::add-mask::$jaipilot_token"
           echo "jaipilot_token=$jaipilot_token" >> "$GITHUB_OUTPUT"
