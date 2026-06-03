@@ -34,6 +34,7 @@ jobs:
         shell: bash
         env:
           JAIPILOT_TOKEN_ENDPOINT: ${{ secrets.JAIPILOT_TOKEN_ENDPOINT }} # compliance-shield-ignore
+          JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }} # compliance-shield-ignore
         run: |
           set -euo pipefail
 
