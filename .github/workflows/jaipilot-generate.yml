@@ -63,7 +63,7 @@ jobs:
             '{repository: $repository, repository_id: $repository_id, repository_owner: $repository_owner, run_id: $run_id, run_attempt: $run_attempt, actor: $actor}')"
 
           if [ -z "$JAIPILOT_TOKEN_ENDPOINT" ]; then
-            echo "JAIPILOT_TOKEN_ENDPOINT secret is not configured." >&2
+            echo "JAIPILOT_TOKEN_ENDPOINT credential is not configured." >&2
             exit 1
           fi
 
