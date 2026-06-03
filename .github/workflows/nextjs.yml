@@ -1,5 +1,3 @@
-# Actions pinned to immutable SHAs for security and stability; review and update quarterly.
-# This prevents unexpected changes in action behavior from breaking the workflow.
 # Sample workflow for building and deploying a Next.js site to GitHub Pages
 #
 # To get started with Next.js see: https://nextjs.org/docs/getting-started
