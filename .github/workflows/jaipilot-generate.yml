@@ -106,7 +106,6 @@ jobs:
 
           echo "::add-mask::$jaipilot_token"
           echo "jaipilot_token=$jaipilot_token" >> "$GITHUB_OUTPUT"
-          echo "JAIPILOT_BACKEND_URL=$JAIPILOT_BACKEND_URL" >> "$GITHUB_OUTPUT"
           echo "jaipilot_token_expires_at=$expires_at" >> "$GITHUB_OUTPUT"
 
       - name: Run JAIPilot generate and push changes
