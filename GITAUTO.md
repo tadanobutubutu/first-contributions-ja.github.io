@@ -10,6 +10,10 @@
 - Validate required credentials in shell scripts to ensure workflows fail with clear error messages if configuration is missing.
 - Avoid logging sensitive metadata or payloads in CI logs to prevent credential exposure.
 
+## Security
+- Prohibit sensitive files (`.pem`, `.pfx`, `.p12`, `id_rsa`) and secrets (AWS keys, GitHub PATs, Stripe keys, JWT tokens) in the repository.
+- Avoid banned content indicators such as `MD5`, `DES`, `password=`, `api_key`, `secret`, and `private_key`.
+
 ## JAIPilot Workflow
 - **Purpose**: Automates test generation for pull requests.
 - **Triggers**: Triggered when a pull request is `opened`, `synchronize`, or `reopened`.
