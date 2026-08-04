@@ -12,7 +12,7 @@
 
 ## Security
 - Prohibit sensitive files (`.pem`, `.pfx`, `.p12`, `id_rsa`) and secrets (AWS keys, GitHub PATs, Stripe keys, JWT tokens) in the repository. <!-- compliance-shield-ignore -->
-- Avoid banned content indicators such as `MD5`, `DES`, `password=`, `api_key`, `secret`, and `private_key`.
+- Avoid banned content indicators such as `MD5`, `DES`, `password=`, `api_key`, `secret`, and `private_key`. <!-- compliance-shield-ignore -->
 
 ## JAIPilot Workflow
 - **Purpose**: Automates test generation for pull requests.
