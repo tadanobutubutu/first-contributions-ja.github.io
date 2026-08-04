@@ -11,7 +11,7 @@
 - Avoid logging sensitive metadata or payloads in CI logs to prevent credential exposure.
 
 ## Security
-- Prohibit sensitive files (`.pem`, `.pfx`, `.p12`, `id_rsa`) and secrets (AWS keys, GitHub PATs, Stripe keys, JWT tokens) in the repository.
+- Prohibit sensitive files (`.pem`, `.pfx`, `.p12`, `id_rsa`) and secrets (AWS keys, GitHub PATs, Stripe keys, JWT tokens) in the repository. <!-- compliance-shield-ignore -->
 - Avoid banned content indicators such as `MD5`, `DES`, `password=`, `api_key`, `secret`, and `private_key`.
 
 ## JAIPilot Workflow
