@@ -21,6 +21,11 @@
 
 <br>
 
+
+<!-- AUTO-PACKAGE-BADGES:START -->
+
+<!-- AUTO-PACKAGE-BADGES:END -->
+
 ## はじめに
 
 このプロジェクトは、Git/GitHub の実践的な使い方や、オープンソースでコラボレーションする作法を学ぶための、日本語のチュートリアルです！
