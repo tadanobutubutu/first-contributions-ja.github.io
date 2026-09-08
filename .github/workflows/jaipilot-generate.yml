@@ -11,7 +11,8 @@ on:
 
 
 concurrency:
-  group: jaipilot-generate-${{ github.event.pull_request.number || github.run_id }}
+  # github.ref is refs/pull/<n>/merge on a pull_request and the branch ref on a dispatch, so it groups per PR without interpolating anything from github.event.
+  group: jaipilot-generate-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -120,14 +121,18 @@ jobs:
         if: success()
         run: |
           echo "::notice::JAIPilot test generation completed successfully."
-          echo "### ✅ JAIPilot Test Generation Success" >> $GITHUB_STEP_SUMMARY
-          echo "JAIPilot has successfully analyzed the PR and pushed generated tests to the branch." >> $GITHUB_STEP_SUMMARY
+          {
+            echo "### ✅ JAIPilot Test Generation Success"
+            echo "JAIPilot has successfully analyzed the PR and pushed generated tests to the branch."
+          } >> "$GITHUB_STEP_SUMMARY"
 
 
       - name: Report Failure
         if: failure()
         run: |
           echo "::error::JAIPilot test generation failed."
-          echo "### ❌ JAIPilot Test Generation Failure" >> $GITHUB_STEP_SUMMARY
-          echo "JAIPilot encountered an error during test generation. Please check the workflow logs for details." >> $GITHUB_STEP_SUMMARY
+          {
+            echo "### ❌ JAIPilot Test Generation Failure"
+            echo "JAIPilot encountered an error during test generation. Please check the workflow logs for details."
+          } >> "$GITHUB_STEP_SUMMARY"
 
