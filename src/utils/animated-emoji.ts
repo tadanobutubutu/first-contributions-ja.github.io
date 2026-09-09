@@ -28,12 +28,13 @@ const getAnimationStyles = (index: number, speed: number) => {
   };
 };
 
-const emojiToUnicodeHex = (emoji: string) => {
+// Noto Emoji renders the emoji form only when the variation selector follows the code point, so it is appended here instead of relying on the browser's default presentation.
+const toEmojiPresentation = (emoji: string) => {
   const codePoint = emoji.codePointAt(0);
   if (codePoint === undefined) {
     throw new Error("Invalid emoji input");
   }
-  return `&#x${codePoint.toString(16).toUpperCase()};&#xfe0f;`;
+  return `${String.fromCodePoint(codePoint)}\uFE0F`;
 };
 
-export { getEmojiSize, getAnimationStyles, emojiToUnicodeHex };
+export { getEmojiSize, getAnimationStyles, toEmojiPresentation };
