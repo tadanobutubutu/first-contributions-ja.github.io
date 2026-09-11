@@ -35,9 +35,10 @@ jobs:
         id: jaipilot-auth
         shell: bash
         env:
-          JAIPILOT_TOKEN_ENDPOINT: ${{ secrets.JAIPILOT_TOKEN_ENDPOINT }} # compliance-shield-ignore
+          # JAIPilot publishes these two service URLs as literals in its own managed workflow, and the app authorizes the run by the OIDC token rather than by anything held here, so they are not repository secrets.
+          JAIPILOT_TOKEN_ENDPOINT: https://otxfylhjrlaesjagfhfi.supabase.co/functions/v1/github-actions-token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }} # compliance-shield-ignore
+          JAIPILOT_BACKEND_URL: https://otxfylhjrlaesjagfhfi.supabase.co
         run: |
           set -euo pipefail
           trap 'echo "Error in line $LINENO" >&2' ERR
@@ -112,7 +113,7 @@ jobs:
       - name: Run JAIPilot generate and push changes
         uses: JAIPilot/jaipilot-cli@530d9e06e603b73269e5287bd1e9f22b1ae45805 # v1
         env:
-          JAIPILOT_BACKEND_URL: ${{ secrets.JAIPILOT_BACKEND_URL }}
+          JAIPILOT_BACKEND_URL: https://otxfylhjrlaesjagfhfi.supabase.co
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           jaipilot-auth-token: ${{ steps.jaipilot-auth.outputs.jaipilot_token }}
