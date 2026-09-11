@@ -16,7 +16,7 @@ import SpeechBubbleItem from "@/components/ui/speechBubbleItem";
 import SpeechBubbleWrapper from "@/components/ui/SpeechBubbleWrapper";
 import Image from "next/image";
 import SectionTitle from "../components/ui/section-title";
-import { emojiToUnicodeHex } from "@/utils/animated-emoji";
+import { toEmojiPresentation } from "@/utils/animated-emoji";
 
 export default function Home() {
   const contributorsGroups = groupContributorsBySection(
@@ -206,10 +206,9 @@ export default function Home() {
                   DOMO <br className="lg:hidden" />
                   ARIGATO !!
                 </p>
-                <p
-                  className="mb-2 mt-8 font-notoEmoji text-9xl text-red-600"
-                  dangerouslySetInnerHTML={{ __html: emojiToUnicodeHex("🎉") }}
-                ></p>
+                <p className="mb-2 mt-8 font-notoEmoji text-9xl text-red-600">
+                  {toEmojiPresentation("🎉")}
+                </p>
               </div>
             </SpeechBubbleItem>
             <SpeechBubbleItem>
