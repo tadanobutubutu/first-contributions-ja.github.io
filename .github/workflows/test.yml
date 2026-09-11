@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# Both jobs only read the checkout to run the tests and actionlint, so nothing here needs a write scope.
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
