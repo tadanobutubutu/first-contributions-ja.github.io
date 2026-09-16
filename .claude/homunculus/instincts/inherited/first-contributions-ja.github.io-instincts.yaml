@@ -1,0 +1,433 @@
+# Instincts generated from https://github.com/tadanobutubutu/first-contributions-ja.github.io
+# Generated: 2026-06-03T12:47:17.318Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: first-contributions-ja.github.io-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Commit Length
+
+## Action
+
+Keep commit messages concise (~41 characters)
+
+## Evidence
+
+- Average commit message length: 41 chars
+- Based on 14 commits
+
+---
+id: first-contributions-ja.github.io-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: first-contributions-ja.github.io-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: first-contributions-ja.github.io-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: first-contributions-ja.github.io-workflow-update-config-or-workflow-file
+trigger: "when doing update config or workflow file"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Workflow Update Config Or Workflow File
+
+## Action
+
+Follow the update-config-or-workflow-file workflow:
+1. Edit the relevant config or workflow file (e.g., tsconfig.json, tsconfig.test.json, .github/workflows/jaipilot-generate.yml)
+2. Commit the change, often with [skip ci] in the message
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: tsconfig.json, tsconfig.test.json, .github/workflows/jaipilot-generate.yml
+
+---
+id: first-contributions-ja.github.io-workflow-create-or-update-documentation-file
+trigger: "when doing create or update documentation file"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Workflow Create Or Update Documentation File
+
+## Action
+
+Follow the create-or-update-documentation-file workflow:
+1. Create or edit a documentation file (e.g., GITAUTO.md)
+2. Commit the new or updated file, often with [skip ci] in the message
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: GITAUTO.md
+
+---
+id: first-contributions-ja.github.io-workflow-merge-main-into-feature-branch
+trigger: "when doing merge main into feature branch"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Workflow Merge Main Into Feature Branch
+
+## Action
+
+Follow the merge-main-into-feature-branch workflow:
+1. Merge main into the feature branch
+2. Resolve any conflicts
+3. Commit the merge, updating files as needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: package-lock.json, package.json, .github/workflows/jaipilot-generate.yml
+
+---
+id: first-contributions-ja.github.io-workflow-empty-commit-to-trigger-ci
+trigger: "when doing empty commit to trigger ci"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Workflow Empty Commit To Trigger Ci
+
+## Action
+
+Follow the empty-commit-to-trigger-ci workflow:
+1. Create an empty commit with a descriptive message
+2. Push the commit to trigger CI
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: 
+
+---
+id: first-contributions-ja.github.io-camelcase-files
+trigger: "When creating or renaming a file."
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Camelcase Files
+
+## Action
+
+Name the file using camelCase.
+
+## Evidence
+
+- Pattern in namingConventions.files
+- No snake_case or kebab-case files detected
+
+---
+id: first-contributions-ja.github.io-camelcase-functions
+trigger: "When defining a function."
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Camelcase Functions
+
+## Action
+
+Name the function using camelCase.
+
+## Evidence
+
+- Pattern in namingConventions.functions
+
+---
+id: first-contributions-ja.github.io-pascalcase-classes
+trigger: "When defining a class."
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Pascalcase Classes
+
+## Action
+
+Name the class using PascalCase.
+
+## Evidence
+
+- Pattern in namingConventions.classes
+
+---
+id: first-contributions-ja.github.io-screaming-snake-constants
+trigger: "When defining a constant."
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Screaming Snake Constants
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE.
+
+## Evidence
+
+- Pattern in namingConventions.constants
+
+---
+id: first-contributions-ja.github.io-relative-imports
+trigger: "When importing modules."
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Relative Imports
+
+## Action
+
+Use relative import paths.
+
+## Evidence
+
+- Pattern in importStyle: relative
+
+---
+id: first-contributions-ja.github.io-named-exports
+trigger: "When exporting functions or variables."
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Named Exports
+
+## Action
+
+Use named exports.
+
+## Evidence
+
+- Pattern in exportStyle: named
+
+---
+id: first-contributions-ja.github.io-test-location-mixed
+trigger: "When adding or updating tests."
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Test Location Mixed
+
+## Action
+
+Place test files either alongside source files or in a mixed location, not strictly in a /test folder.
+
+## Evidence
+
+- architecture.folderStructure.testLocation: mixed
+
+---
+id: first-contributions-ja.github.io-commit-prefix-chore
+trigger: "When making a commit for maintenance, config, or workflow changes."
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Commit Prefix Chore
+
+## Action
+
+Prefix the commit message with 'chore:'.
+
+## Evidence
+
+- Seen in commit 'chore: add JAIPilot managed workflow'
+- Pattern in commit prefixes
+
+---
+id: first-contributions-ja.github.io-commit-skip-ci
+trigger: "When committing changes that do not require CI (e.g., updating docs or config files)."
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Commit Skip Ci
+
+## Action
+
+Add '[skip ci]' to the commit message.
+
+## Evidence
+
+- Seen in commit 'Update tsconfig.test.json [skip ci]'
+- Pattern in commit messages
+
+---
+id: first-contributions-ja.github.io-commit-empty-trigger-ci
+trigger: "When needing to trigger CI/CD without changing any files."
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Commit Empty Trigger Ci
+
+## Action
+
+Create and push an empty commit with a descriptive message.
+
+## Evidence
+
+- Seen in commit 'Empty commit to trigger final tests'
+- Workflow: empty-commit-to-trigger-ci
+
+---
+id: first-contributions-ja.github.io-update-config-workflow
+trigger: "When build/test settings or CI workflows need to be changed."
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Update Config Workflow
+
+## Action
+
+Edit the relevant config or workflow file and commit the change, often with [skip ci] in the message.
+
+## Evidence
+
+- Workflow: update-config-or-workflow-file
+- Commits updating tsconfig.json and .github/workflows/jaipilot-generate.yml
+
+---
+id: first-contributions-ja.github.io-update-docs-workflow
+trigger: "When adding or revising project documentation."
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Update Docs Workflow
+
+## Action
+
+Create or edit documentation files (e.g., GITAUTO.md) and commit with [skip ci] in the message.
+
+## Evidence
+
+- Workflow: create-or-update-documentation-file
+- Commits creating or updating GITAUTO.md
+
+---
+id: first-contributions-ja.github.io-merge-main-workflow
+trigger: "When a feature branch needs to be updated with the latest main branch changes."
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: tadanobutubutu/first-contributions-ja.github.io
+---
+
+# First Contributions Ja.github.io Merge Main Workflow
+
+## Action
+
+Merge main into the feature branch, resolve conflicts, and commit the merge.
+
+## Evidence
+
+- Workflow: merge-main-into-feature-branch
+- Commits merging 'main' into feature branches
+
