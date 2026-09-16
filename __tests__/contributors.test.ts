@@ -44,7 +44,7 @@ describe("Contributors", () => {
     });
 
     it("お気に入りの色がHEX形式であること", () => {
-      contributors.forEach((contributor, index) => {
+      contributors.forEach((contributor) => {
         expect(
           contributor.favoriteColor,
           `Contributor ${contributor.name}`,
@@ -61,7 +61,7 @@ describe("Contributors", () => {
     });
 
     it("お気に入りの絵文字が有効であること", () => {
-      contributors.forEach((contributor, index) => {
+      contributors.forEach((contributor) => {
         expect(
           contributor.favoriteEmoji,
           `Contributor ${contributor.name}`,

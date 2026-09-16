@@ -1,7 +1,7 @@
 import {
-  emojiToUnicodeHex,
   getAnimationStyles,
   getEmojiSize,
+  toEmojiPresentation,
 } from "@/utils/animated-emoji";
 import contributorsReversed from "../utils/contributors-reversed";
 import { latestContributorsColor } from "@/utils/contributors-grouping";
@@ -24,7 +24,7 @@ const AnimatedEmoji: React.FC<AnimatedEmojiProps> = ({
   );
   const speed = Math.floor(Math.random() * 65 + 35) / 10;
   const styles = getAnimationStyles(index, speed);
-  const notoEmoji = emojiToUnicodeHex(contributor.favoriteEmoji);
+  const notoEmoji = toEmojiPresentation(contributor.favoriteEmoji);
   const emojiColor = hexToRgb(latestContributorsColor, 0.5);
 
   return (
@@ -38,8 +38,9 @@ const AnimatedEmoji: React.FC<AnimatedEmojiProps> = ({
             <div
               className={`flex h-full w-full flex-col items-center justify-center gap-0.5 ${emojiSize}`}
               style={{ color: emojiColor }}
-              dangerouslySetInnerHTML={{ __html: notoEmoji }}
-            ></div>
+            >
+              {notoEmoji}
+            </div>
           </div>
           <div
             style={{ borderColor: contributor.favoriteColor }}
